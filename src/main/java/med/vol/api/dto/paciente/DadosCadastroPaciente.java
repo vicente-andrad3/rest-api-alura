@@ -1,9 +1,10 @@
-package med.vol.api.data;
+package med.vol.api.dto.paciente;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import med.vol.api.dto.data.DadosEndereco;
 
 public record DadosCadastroPaciente(
         @NotBlank

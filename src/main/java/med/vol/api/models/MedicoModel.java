@@ -2,9 +2,10 @@ package med.vol.api.models;
 
 import jakarta.persistence.*;
 import lombok.*;
-import med.vol.api.data.DadosCadastroMedico;
-import med.vol.api.data.Endereco;
-import med.vol.api.data.Especialidade;
+import med.vol.api.dto.medico.DadosAtualizarMedico;
+import med.vol.api.dto.medico.DadosCadastroMedico;
+import med.vol.api.dto.data.Endereco;
+import med.vol.api.dto.data.Especialidade;
 
 @Table(name = "medicos")
 @Entity(name = "Medico")
@@ -34,5 +35,17 @@ public class MedicoModel {
         this.crm = dados.crm();
         this.especialidade = dados.especialidade();
         this.endereco = new Endereco(dados.endereco());
+    }
+
+    public void atualizarInformacoes(DadosAtualizarMedico dados) {
+        if(dados.nome() != null){
+            this.name = dados.nome();
+        }
+        if (dados.telefone() != null){
+            this.telefone = dados.telefone();
+        }
+        if(dados.endereco() != null){
+            this.endereco.atualizarInformacoes(dados.endereco());
+        }
     }
 }

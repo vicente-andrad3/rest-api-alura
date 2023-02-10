@@ -1,8 +1,8 @@
 package med.vol.api.controller;
 
 import jakarta.validation.Valid;
-import med.vol.api.data.DadosCadastroPaciente;
-import med.vol.api.data.DadosListagemPaciente;
+import med.vol.api.dto.paciente.DadosCadastroPaciente;
+import med.vol.api.dto.paciente.DadosListagemPaciente;
 import med.vol.api.models.PacienteModel;
 import med.vol.api.repository.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
