@@ -4,3 +4,18 @@ spring:
     url: jdbc:mysql://localhost:3306/vollmed_api
     username: root
     password: root
+
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  data:
+    web:
+      pageable:
+        page-parameter: pagina
+        size-parameter: tamanho
+
+      sort:
+        sort-parameter: ordem
