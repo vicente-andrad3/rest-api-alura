@@ -1,4 +1,4 @@
-package med.vol.api.models;
+package med.vol.api.data;
 
 public enum Especialidade {
 

@@ -2,6 +2,9 @@ package med.vol.api.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import med.vol.api.data.DadosCadastroMedico;
+import med.vol.api.data.Endereco;
+import med.vol.api.data.Especialidade;
 
 @Table(name = "medicos")
 @Entity(name = "Medico")

@@ -1,15 +1,15 @@
 package med.vol.api.controller;
 
 import jakarta.validation.Valid;
-import med.vol.api.models.DadosCadastroMedico;
+import med.vol.api.data.DadosCadastroMedico;
+import med.vol.api.data.DadosListagemMedico;
 import med.vol.api.models.MedicoModel;
 import med.vol.api.repository.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("medicos")
@@ -22,6 +22,11 @@ public class MedicoController {
     @Transactional // Transação ativa com o BD
     public void cadastrarMedico(@RequestBody @Valid DadosCadastroMedico dados) {
         repository.save(new MedicoModel(dados));
+    }
+
+    @GetMapping
+    public List<DadosListagemMedico> listar(){
+        return repository.findAll().stream().map(DadosListagemMedico::new).toList(); // Conversão MedicoModel para o DTO de DadosListagemMedico
     }
 
 }
