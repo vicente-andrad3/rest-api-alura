@@ -1,6 +1,7 @@
 package med.vol.api.controller;
 
 import jakarta.validation.Valid;
+import med.vol.api.dto.paciente.DadosAtualizarPaciente;
 import med.vol.api.dto.paciente.DadosCadastroPaciente;
 import med.vol.api.dto.paciente.DadosListagemPaciente;
 import med.vol.api.models.PacienteModel;
@@ -26,7 +27,22 @@ public class PacienteController {
     }
 
     @GetMapping
-    public Page<DadosListagemPaciente> listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao){
-        return repository.findAll(paginacao).map(DadosListagemPaciente::new);
+    public Page<DadosListagemPaciente> listarPaciente(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao){
+        return repository.findAllByAtivoTrue(paginacao).map(DadosListagemPaciente::new);
     }
+
+    @PutMapping
+    @Transactional
+    public void atualizarPaciente(@RequestBody @Valid DadosAtualizarPaciente dados) {
+        var paciente = repository.getReferenceById(dados.id());
+        paciente.atualizarInformacoes(dados);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void excluirPaciente(@PathVariable Long id){
+        var paciente = repository.getReferenceById(id);
+        paciente.excluirPaciente();
+    }
+
 }

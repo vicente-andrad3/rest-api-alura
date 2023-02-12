@@ -28,7 +28,10 @@ public class MedicoModel {
     @Embedded // Indica que a classe vai ficar separada, porém estará contida dentro da classe MedicoModel
     private Endereco endereco;
 
+    private boolean ativo;
+
     public MedicoModel(DadosCadastroMedico dados) {
+        this.ativo = true;
         this.name = dados.nome();
         this.email = dados.email();
         this.telefone = dados.telefone();
@@ -47,5 +50,9 @@ public class MedicoModel {
         if(dados.endereco() != null){
             this.endereco.atualizarInformacoes(dados.endereco());
         }
+    }
+
+    public void excluir() {
+        this.ativo = false;
     }
 }
