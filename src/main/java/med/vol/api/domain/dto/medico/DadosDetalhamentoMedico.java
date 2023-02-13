@@ -1,8 +1,8 @@
-package med.vol.api.dto.medico;
+package med.vol.api.domain.dto.medico;
 
-import med.vol.api.dto.data.Endereco;
-import med.vol.api.dto.data.Especialidade;
-import med.vol.api.models.MedicoModel;
+import med.vol.api.domain.dto.data.Endereco;
+import med.vol.api.domain.dto.data.Especialidade;
+import med.vol.api.domain.models.MedicoModel;
 
 public record DadosDetalhamentoMedico(
         Long id,

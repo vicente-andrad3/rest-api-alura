@@ -19,3 +19,7 @@ spring:
 
       sort:
         sort-parameter: ordem
+
+server:
+  error:
+    include-stacktrace: never

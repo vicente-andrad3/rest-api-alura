@@ -1,4 +1,4 @@
-package med.vol.api.dto.data;
+package med.vol.api.domain.dto.data;
 
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;

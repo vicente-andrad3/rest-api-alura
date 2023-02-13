@@ -1,11 +1,11 @@
-package med.vol.api.models;
+package med.vol.api.domain.models;
 
 import jakarta.persistence.*;
 import lombok.*;
-import med.vol.api.dto.medico.DadosAtualizarMedico;
-import med.vol.api.dto.medico.DadosCadastroMedico;
-import med.vol.api.dto.data.Endereco;
-import med.vol.api.dto.data.Especialidade;
+import med.vol.api.domain.dto.data.Endereco;
+import med.vol.api.domain.dto.data.Especialidade;
+import med.vol.api.domain.dto.medico.DadosAtualizarMedico;
+import med.vol.api.domain.dto.medico.DadosCadastroMedico;
 
 @Table(name = "medicos")
 @Entity(name = "Medico")

@@ -1,6 +1,6 @@
-package med.vol.api.dto.paciente;
+package med.vol.api.domain.dto.paciente;
 
-import med.vol.api.models.PacienteModel;
+import med.vol.api.domain.models.PacienteModel;
 
 public record DadosListagemPaciente(
         String nome,
