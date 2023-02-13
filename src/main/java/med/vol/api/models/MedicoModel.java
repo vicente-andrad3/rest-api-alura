@@ -52,7 +52,7 @@ public class MedicoModel {
         }
     }
 
-    public void excluir() {
+    public void excluirMedico() {
         this.ativo = false;
     }
 }

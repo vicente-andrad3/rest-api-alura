@@ -54,8 +54,13 @@ public class MedicoController {
     @Transactional
     public ResponseEntity excluirMedico(@PathVariable Long id) { // Exclusão total // ResponseEntity é responsável pelas respostas dados pelas requisições HTTP
         var medico = repository.getReferenceById(id);
-        medico.excluir();
+        medico.excluirMedico(); // Exclusão lógica
         return ResponseEntity.noContent().build(); // .build() Cria um objeto response entity
     }
 
+    @GetMapping("/{id}") // Método de detalhar médico
+    public ResponseEntity detalharMedico(@PathVariable Long id) {
+        var medico = repository.getReferenceById(id);
+        return ResponseEntity.ok(new DadosDetalhamentoMedico(medico));
+    }
 }
