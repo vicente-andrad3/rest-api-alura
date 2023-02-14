@@ -9,19 +9,19 @@ import med.vol.api.domain.dto.data.DadosEndereco;
 import med.vol.api.domain.dto.data.Especialidade;
 
 public record DadosCadastroMedico(
-        @NotBlank
+        @NotBlank(message = "{nome.obrigatorio}")
         String nome,
-        @NotBlank
-        @Email
+        @NotBlank(message = "{email.obrigatorio}")
+        @Email(message = "{email.invalido}")
         String email,
-        @NotBlank
+        @NotBlank(message = "{telefone.obrigatorio}")
         String telefone,
-        @NotBlank
-        @Pattern(regexp = "\\d{4,6}")
+        @NotBlank(message = "crm.obrigatorio")
+        @Pattern(regexp = "\\d{4,6}", message = "{crm.invalido}")
         String crm,
-        @NotNull
+        @NotNull(message = "{especialidade.obrigatorio}")
         Especialidade especialidade,
-        @NotNull
+        @NotNull(message = "{endereco.obrigatorio}")
         @Valid
         DadosEndereco endereco) { // Classes Record já possuem todos gets and sets
 }
