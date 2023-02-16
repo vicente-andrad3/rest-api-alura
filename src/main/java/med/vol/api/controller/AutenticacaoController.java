@@ -2,6 +2,7 @@ package med.vol.api.controller;
 
 import jakarta.validation.Valid;
 import med.vol.api.domain.dto.usuario.DadosAutenticacao;
+import med.vol.api.infra.security.DadosTokenJWT;
 import med.vol.api.domain.models.UsuarioModel;
 import med.vol.api.infra.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +26,10 @@ public class AutenticacaoController {
 
     @PostMapping
     public ResponseEntity efetuarLogin(@RequestBody @Valid DadosAutenticacao dados) {
-        var token = new UsernamePasswordAuthenticationToken(dados.login(), dados.password()); // converte o dto record, no dto de authetication token
-        var authentication = manager.authenticate(token); // recebe o dto convertido e dispara o processo de autenticação
-        return ResponseEntity.ok(tokenService.generateToken((UsuarioModel) authentication.getPrincipal())); // Casting para dar os dados do usuário
+        var authenticationToken = new UsernamePasswordAuthenticationToken(dados.login(), dados.password()); // converte o dto record, no dto de authetication token
+        var authentication = manager.authenticate(authenticationToken); // recebe o dto convertido e dispara o processo de autenticação
+        var tokenJWT = tokenService.generateToken((UsuarioModel) authentication.getPrincipal()); // melhorar encapsulamento
+        return ResponseEntity.ok(new DadosTokenJWT(tokenJWT)); // Casting para dar os dados do usuário
     }
 
 }
