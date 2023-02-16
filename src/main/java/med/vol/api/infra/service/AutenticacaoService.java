@@ -1,4 +1,4 @@
-package med.vol.api.service;
+package med.vol.api.infra.service;
 
 import med.vol.api.domain.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
