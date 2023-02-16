@@ -1,4 +1,4 @@
-package med.vol.api.infra;
+package med.vol.api.infra.exception;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
