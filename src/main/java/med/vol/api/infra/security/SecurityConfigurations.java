@@ -2,6 +2,7 @@ package med.vol.api.infra.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -22,6 +23,10 @@ public class SecurityConfigurations {
         // Por fim, damos o build() para criar essas modificações.
         return http.csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().authorizeHttpRequests() // authorizeRequest esta decrepted
+                .requestMatchers(HttpMethod.POST, "/login").permitAll() // Mesma ideia de antMatchers
+                .anyRequest().authenticated() // bloqueado acesso para todos que não forem autenticados
+
                 .and().build();
     }
 
