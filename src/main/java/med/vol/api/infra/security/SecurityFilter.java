@@ -26,7 +26,6 @@ public class SecurityFilter extends OncePerRequestFilter { // Herança do spring
     @Override // filterChain é a cadeia de filters
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException { // Valida apenas uma vez por request
 
-        System.out.println("CHAMANDO FILTER");
         var tokenJWT = recorverToken(request); // Recuperar o token do cabeçalho
         if(tokenJWT != null){
             var subject = tokenService.getSubject(tokenJWT); // Autentica o token e retorna o subject - usuário
@@ -34,7 +33,6 @@ public class SecurityFilter extends OncePerRequestFilter { // Herança do spring
 
             var authentication = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities()); // Autentica o usuario
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            System.out.println("LOGADO NA REQUISIÇÃO");
         }
 
         filterChain.doFilter(request, response); // Chama os próximo filters, só usa caso queira ver outros filtros

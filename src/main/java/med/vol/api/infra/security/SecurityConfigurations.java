@@ -1,5 +1,6 @@
 package med.vol.api.infra.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -11,10 +12,14 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity // Indica que vamos personalizar as configurações de segurança
 public class SecurityConfigurations {
+
+    @Autowired
+    private SecurityFilter securityFilter;
 
     @Bean // Expor o return desse método, devolve um objeto para o spring ou um objeto que será injetado em algum local
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
@@ -26,8 +31,8 @@ public class SecurityConfigurations {
                 .and().authorizeHttpRequests() // authorizeRequest esta decrepted
                 .requestMatchers(HttpMethod.POST, "/login").permitAll() // Mesma ideia de antMatchers
                 .anyRequest().authenticated() // bloqueado acesso para todos que não forem autenticados
-
-                .and().build();
+                .and().addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
+                .build();
     }
 
     @Bean
