@@ -28,14 +28,15 @@ public class AgendaDeConsultasService {
         if(dados.idMedico() != null && !medicoRepository.existsById(dados.idMedico())){ // Regra de negócio médico - opcional
             throw new ValidacaoException("Id do médico informado não existe!");
         }
-
-
+        
         // Um erro apareceu aqui
         // Resolução: Implementar método findByID, onde o resultado pode ou não ser Optional!
         // Essa implementação é feita dentro das classe repository de cada entity
         // Método get() pega o objeto de fato para validar
 
-        var paciente = pacienteRepository.findAllById(dados.idPaciente()).get();
+        // Melhor resolução: Utilizamos do getReferenceById() para receber um id da entidy paciente/medico
+
+        var paciente = pacienteRepository.getReferenceById(dados.idPaciente());
         var medico = escolherMedico(dados);
         var consulta = new ConsultaModel(null, medico, paciente, dados.data());
 
@@ -46,7 +47,12 @@ public class AgendaDeConsultasService {
         if (dados.idMedico() != null){
             return medicoRepository.getReferenceById(dados.idMedico());
         }
-        return null;
+
+        if(dados.especialidade() == null) {
+            throw new ValidacaoException("Especialidade é obrigatório quando médico não for escolhido!");
+        }
+
+        return medicoRepository.escolherMedicoAleatorioLivreNaData(dados.especialidade(), dados.data());
     }
 
 }
