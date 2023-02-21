@@ -28,6 +28,8 @@ public class AgendaDeConsultasService {
         if(dados.idMedico() != null && !medicoRepository.existsById(dados.idMedico())){ // Regra de negócio médico - opcional
             throw new ValidacaoException("Id do médico informado não existe!");
         }
+
+        // Validações
         
         // Um erro apareceu aqui
         // Resolução: Implementar método findByID, onde o resultado pode ou não ser Optional!
