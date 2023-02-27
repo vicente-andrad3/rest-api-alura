@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import med.vol.api.domain.dto.consulta.MotivoCancelamento;
 
 import java.time.LocalDateTime;
 
@@ -28,5 +29,13 @@ public class ConsultaModel {
     private PacienteModel paciente;
 
     private LocalDateTime data;
+
+    @Column(name = "motivo_cancelamento")
+    @Enumerated(EnumType.STRING)
+    private MotivoCancelamento motivoCancelamento;
+
+    public void cancelar(MotivoCancelamento motivo) {
+        this.motivoCancelamento = motivo;
+    }
 
 }

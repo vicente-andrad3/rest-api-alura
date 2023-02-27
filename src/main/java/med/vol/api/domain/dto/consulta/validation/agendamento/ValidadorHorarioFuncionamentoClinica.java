@@ -1,4 +1,4 @@
-package med.vol.api.domain.dto.consulta.validation;
+package med.vol.api.domain.dto.consulta.validation.agendamento;
 
 import med.vol.api.domain.dto.consulta.DadosAgendamentoConsulta;
 import med.vol.api.infra.exception.ValidacaoException;

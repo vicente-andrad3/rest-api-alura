@@ -21,6 +21,13 @@ public class TratadorDeErrosConfiguration {
         return ResponseEntity.badRequest().body(erros.stream().map(DadosErroValidacao::new).toList()); // Converte listas para definir o body
     }
 
+    @ExceptionHandler(ValidacaoException.class)
+    public ResponseEntity tratarRegraDeNegocio(ValidacaoException ex) {
+        return ResponseEntity.badRequest().body(ex.getMessage()); // Converte listas para definir o body
+    }
+
+
+
     private record DadosErroValidacao(
             String campo,
             String mensagem
