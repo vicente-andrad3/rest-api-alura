@@ -1,5 +1,6 @@
 package med.vol.api.controller;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import med.vol.api.domain.dto.medico.DadosAtualizarMedico;
 import med.vol.api.domain.dto.medico.DadosCadastroMedico;
@@ -18,6 +19,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("medicos")
+@SecurityRequirement(name = "bearer-key")
 public class MedicoController {
 
     @Autowired // Quem instancia é o próprio java, injeção de dependências

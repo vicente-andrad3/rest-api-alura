@@ -30,6 +30,7 @@ public class SecurityConfigurations {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().authorizeHttpRequests() // authorizeRequest esta decrepted
                 .requestMatchers(HttpMethod.POST, "/login").permitAll() // Mesma ideia de antMatchers
+                .requestMatchers("/v3/api-docs/**", "swagger-ui.html", "/swagger-ui/**").permitAll() // Endereços publicos
                 .anyRequest().authenticated() // bloqueado acesso para todos que não forem autenticados
                 .and().addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
